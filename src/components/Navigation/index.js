@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import {
   Button,
   Box,
@@ -13,6 +14,7 @@ import {
   ListItemIcon,
   ListItemText,
   Hidden,
+  Link,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -23,14 +25,20 @@ const Navigation = () => {
   const list = (anchor) => (
     <Box sx={{ width: 250 }} role="presentation">
       <List>
-        <ListItem button>
-          <ListItemButton>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItemButton>
-        </ListItem>
+        <Link
+          to="settings"
+          component={RouterLink}
+          onClick={() => setDrawerOpen(false)}
+        >
+          <ListItem button>
+            <ListItemButton>
+              <ListItemIcon>
+                <SettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Settings" />
+            </ListItemButton>
+          </ListItem>
+        </Link>
       </List>
     </Box>
   );
@@ -50,14 +58,26 @@ const Navigation = () => {
               <MenuIcon />
             </IconButton>
           </Hidden>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Movies recommendation
-          </Typography>
+          <Link component={RouterLink} to="/" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ color: "white", flexGrow: 1 }}
+            >
+              Movies recommendation
+            </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 0, display: { xs: "none", lg: "flex" } }}>
-            <Button sx={{ my: 2, color: "white", display: "block" }}>
+            {/* <Link to="settings"> */}
+            <Button
+              component={RouterLink}
+              to="settings"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
               Settings
             </Button>
+            {/* </Link> */}
           </Box>
         </Toolbar>
       </AppBar>
