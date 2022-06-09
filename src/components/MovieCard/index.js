@@ -2,7 +2,7 @@ import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import Box from "@mui/material/Box";
+import PropTypes from "prop-types";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
@@ -15,33 +15,43 @@ const CardInfo = styled(CardContent)(({ theme }) => ({
   },
 }));
 
-const MovieCard = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const MovieCard = ({ movie, onSelectClick }) => {
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const onSelectClick = (movie) => {
-    console.log("Click Select Movie!");
-    setIsOpen(false);
-  };
+  // const onSelectClick = (movie) => {
+  //   console.log("Click Select Movie!");
+  //   setIsOpen(false);
+  // };
 
   return (
     <Card sx={{ maxWidth: 150, position: "relative" }}>
-      <LongMenu onSelectClick={onSelectClick} isOpen={isOpen} />
+      <LongMenu onSelectClick={onSelectClick} />
+      {/* <LongMenu onSelectClick={onSelectClick} isOpen={isOpen} /> */}
       <CardMedia
         component="img"
         height="225"
-        image="https://www.themoviedb.org/t/p/w220_and_h330_face/20goiZ0LvU3Oqmg2fsl8jDEPYd7.jpg"
-        alt="Paella dish"
+        image={movie.image}
+        alt={movie.title}
       />
       <CardInfo sx={{ textAlign: "center" }}>
         <Typography variant="h6" gutterBottom component="div">
-          Обі-Ван Кенобі
+          {movie.title}
         </Typography>
         <Typography variant="body2" component="div">
-          26 трав. 2022
+          {movie.releaseDate}
         </Typography>
       </CardInfo>
     </Card>
   );
+};
+
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    releaseDate: PropTypes.string,
+  }).isRequired,
+  onSelectClick: PropTypes.func,
 };
 
 export default MovieCard;
