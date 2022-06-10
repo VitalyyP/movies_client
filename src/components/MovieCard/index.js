@@ -25,7 +25,7 @@ const MovieCard = ({ movie, onSelectClick }) => {
 
   return (
     <Card sx={{ maxWidth: 150, position: "relative" }}>
-      <LongMenu onSelectClick={onSelectClick} />
+      <LongMenu onClick={onSelectClick} action="Select" />
       {/* <LongMenu onSelectClick={onSelectClick} isOpen={isOpen} /> */}
       <CardMedia
         component="img"

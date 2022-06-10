@@ -10,11 +10,14 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import PropTypes from "prop-types";
 
+import LongMenu from "../LongMenu";
+
 const MovieCardSelected = ({ movie, onDeleteClick }) => {
   const theme = useTheme();
 
   return (
-    <Card sx={{ display: "flex" }}>
+    <Card sx={{ display: "flex", position: "relative" }}>
+      <LongMenu onClick={onDeleteClick} action="Delete" />
       <CardMedia
         component="img"
         sx={{ width: 100 }}
@@ -34,7 +37,7 @@ const MovieCardSelected = ({ movie, onDeleteClick }) => {
             {movie.releaseDate}
           </Typography>
         </CardContent>
-        <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
+        <Box sx={{ alignItems: "center", pl: 2, pb: 1 }}>
           {movie.genres?.length ? (
             <Typography
               variant="subtitle1"
