@@ -15,7 +15,7 @@ const CardInfo = styled(CardContent)(({ theme }) => ({
   },
 }));
 
-const MovieCard = ({ movie, onSelectClick }) => {
+const MovieCard = ({ movie, onClick }) => {
   // const [isOpen, setIsOpen] = useState(false);
 
   // const onSelectClick = (movie) => {
@@ -25,7 +25,7 @@ const MovieCard = ({ movie, onSelectClick }) => {
 
   return (
     <Card sx={{ maxWidth: 150, position: "relative" }}>
-      <LongMenu onClick={onSelectClick} action="Select" />
+      <LongMenu onClick={() => onClick(movie)} action="Select" />
       {/* <LongMenu onSelectClick={onSelectClick} isOpen={isOpen} /> */}
       <CardMedia
         component="img"
@@ -51,7 +51,7 @@ MovieCard.propTypes = {
     title: PropTypes.string.isRequired,
     releaseDate: PropTypes.string,
   }).isRequired,
-  onSelectClick: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 export default MovieCard;

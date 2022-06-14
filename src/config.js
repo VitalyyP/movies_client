@@ -1,0 +1,3 @@
+const MAX_SELECTED_MOVIES = 5;
+
+export { MAX_SELECTED_MOVIES };

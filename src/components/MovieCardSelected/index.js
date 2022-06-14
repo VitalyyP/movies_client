@@ -12,12 +12,12 @@ import PropTypes from "prop-types";
 
 import LongMenu from "../LongMenu";
 
-const MovieCardSelected = ({ movie, onDeleteClick }) => {
+const MovieCardSelected = ({ movie, onClick }) => {
   const theme = useTheme();
 
   return (
-    <Card sx={{ display: "flex", position: "relative" }}>
-      <LongMenu onClick={onDeleteClick} action="Delete" />
+    <Card sx={{ display: "flex", position: "relative", margin: "16px 0" }}>
+      <LongMenu onClick={() => onClick(movie)} action="Delete" />
       <CardMedia
         component="img"
         sx={{ width: 100 }}
@@ -73,7 +73,7 @@ MovieCardSelected.propTypes = {
     ),
     runtime: PropTypes.number,
   }).isRequired,
-  onDeleteClick: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 export default MovieCardSelected;
