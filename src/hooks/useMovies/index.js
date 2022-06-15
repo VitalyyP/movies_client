@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { MAX_SELECTED_MOVIES } from "../config";
+import { MAX_SELECTED_MOVIES } from "../../config";
 
 const useMovies = () => {
   const [selectedMovies, setSelectedMovies] = useState([]);

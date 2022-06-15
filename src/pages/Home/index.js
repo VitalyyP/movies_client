@@ -47,7 +47,6 @@ const Home = () => {
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Pagination
                 count={500}
-                // count={Math.ceil(data?.movies?.totalPages / 3)}
                 page={page}
                 onChange={paginationHandler}
               />

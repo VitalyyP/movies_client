@@ -1,5 +1,6 @@
-import * as React from "react";
+import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -7,7 +8,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 const ITEM_HEIGHT = 48;
 
 export default function LongMenu({ onClick, action }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -42,6 +43,7 @@ export default function LongMenu({ onClick, action }) {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        onClick={handleClose}
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
