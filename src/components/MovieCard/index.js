@@ -16,28 +16,32 @@ const CardInfo = styled(CardContent)(({ theme }) => ({
 }));
 
 const MovieCard = ({ movie, onClick }) => {
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const onSelectClick = (movie) => {
-  //   console.log("Click Select Movie!");
-  //   setIsOpen(false);
-  // };
-
   return (
-    <Card sx={{ maxWidth: 150, position: "relative" }}>
+    <Card
+      sx={{
+        maxWidth: 300,
+        // maxHeight: 450,
+        position: "relative",
+        borderRadius: "10px",
+      }}
+    >
       <LongMenu onClick={() => onClick(movie)} action="Select" />
-      {/* <LongMenu onSelectClick={onSelectClick} isOpen={isOpen} /> */}
       <CardMedia
         component="img"
-        height="225"
         image={movie.image}
         alt={movie.title}
+        sx={{ borderRadius: "10px" }}
       />
       <CardInfo sx={{ textAlign: "center" }}>
-        <Typography variant="h6" gutterBottom component="div">
+        <Typography
+          variant="body1"
+          gutterBottom
+          component="div"
+          sx={{ fontWeight: "bold" }}
+        >
           {movie.title}
         </Typography>
-        <Typography variant="body2" component="div">
+        <Typography variant="body1" component="div">
           {movie.releaseDate}
         </Typography>
       </CardInfo>

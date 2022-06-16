@@ -16,42 +16,48 @@ const MovieCardSelected = ({ movie, onClick }) => {
   const theme = useTheme();
 
   return (
-    <Card sx={{ display: "flex", position: "relative", margin: "16px 0" }}>
+    <Card
+      sx={{
+        display: "flex",
+        position: "relative",
+        maxHeight: 150,
+        margin: "16px 0",
+        borderRadius: "5px",
+      }}
+    >
       <LongMenu onClick={() => onClick(movie)} action="Delete" />
       <CardMedia
         component="img"
-        sx={{ width: 100 }}
+        sx={{ width: 100, borderRadius: "5px" }}
         image={movie.image}
         alt={movie.title}
       />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <CardContent sx={{ flex: "1 0 auto" }}>
-          <Typography component="div" variant="h5">
+          <Typography
+            component="div"
+            variant="body1"
+            align="left"
+            sx={{ fontWeight: "bold" }}
+          >
             {movie.title}
           </Typography>
           <Typography
-            variant="subtitle1"
+            variant="body1"
             color="text.secondary"
             component="div"
+            align="left"
           >
             {movie.releaseDate}
           </Typography>
         </CardContent>
         <Box sx={{ alignItems: "center", pl: 2, pb: 1 }}>
           {movie.genres?.length ? (
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
+            <Typography variant="body1" color="text.secondary" component="div">
               {movie.genres[0].name}
             </Typography>
           ) : null}
-          <Typography
-            variant="subtitle1"
-            color="text.secondary"
-            component="div"
-          >
+          <Typography variant="body1" color="text.secondary" component="div">
             {movie.runtime}
           </Typography>
         </Box>

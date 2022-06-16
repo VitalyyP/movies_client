@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
+
 import {
+  Container,
   Button,
   Box,
   AppBar,
@@ -45,41 +47,41 @@ const Navigation = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
-          <Hidden only={["lg", "xl"]}>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-              onClick={() => setDrawerOpen(true)}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Hidden>
-          <Link component={RouterLink} to="/" sx={{ flexGrow: 1 }}>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ color: "white", flexGrow: 1 }}
-            >
-              Movies recommendation
-            </Typography>
-          </Link>
+        <Container maxWidth="xl">
+          <Toolbar>
+            <Hidden only={["lg", "xl"]}>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+                onClick={() => setDrawerOpen(true)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
+            <Link component={RouterLink} to="/" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ color: "white", flexGrow: 1 }}
+              >
+                Movies recommendation
+              </Typography>
+            </Link>
 
-          <Box sx={{ flexGrow: 0, display: { xs: "none", lg: "flex" } }}>
-            {/* <Link to="settings"> */}
-            <Button
-              component={RouterLink}
-              to="settings"
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              Settings
-            </Button>
-            {/* </Link> */}
-          </Box>
-        </Toolbar>
+            <Box sx={{ flexGrow: 0, display: { xs: "none", lg: "flex" } }}>
+              <Button
+                component={RouterLink}
+                to="settings"
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Settings
+              </Button>
+            </Box>
+          </Toolbar>
+        </Container>
       </AppBar>
       <Drawer
         anchor="left"

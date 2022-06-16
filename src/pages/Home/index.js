@@ -43,7 +43,7 @@ const Home = () => {
           <Grid item xs={12}>
             <Paper>Filter section</Paper>
           </Grid>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={8} lg={9}>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Pagination
                 count={500}
@@ -55,9 +55,24 @@ const Home = () => {
               <Box sx={{ flexGrow: 1, padding: 1 }}>
                 {loading && "Loading..."}
                 {data && (
-                  <Grid container spacing={2}>
+                  <Grid
+                    container
+                    spacing={2}
+                    sx={{ justifyContent: "space-between" }}
+                  >
                     {data.movies.results.map((movie) => (
-                      <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
+                      <Grid
+                        item
+                        xs={12}
+                        sm={4}
+                        md={4}
+                        lg={2.4}
+                        key={movie.id}
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-around",
+                        }}
+                      >
                         <MovieCard movie={movie} onClick={selectMovie} />
                       </Grid>
                     ))}
@@ -68,14 +83,13 @@ const Home = () => {
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Pagination
                 count={500}
-                // count={Math.ceil(data?.movies?.totalPages / 3)}
                 page={page}
                 onChange={paginationHandler}
               />
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <SelectedMovies>
+          <Grid item xs={12} md={4} lg={3}>
+            <SelectedMovies sx={{ overflow: "scroll" }}>
               {/* {selectedMovies.length && ( */}
               {selectedMovies.map((movie) => (
                 <Grid key={movie.id}>

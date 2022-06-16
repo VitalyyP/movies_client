@@ -51,6 +51,7 @@ describe("useMovies hook", () => {
     act(() =>
       result.current.selectMovie({ ...basicMovie, id: MAX_SELECTED_MOVIES })
     );
+
     expect(result.current.selectedMovies.length).toBe(MAX_SELECTED_MOVIES);
   });
 });
