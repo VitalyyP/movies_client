@@ -7,6 +7,7 @@ import MovieCard from "../../components/MovieCard";
 import MovieCardSelected from "../../components/MovieCardSelected";
 import { moviesQuery } from "./queries";
 import useMovies from "../../hooks/useMovies";
+import IMovie from "../../interfaces/IMovie.interface";
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -28,12 +29,15 @@ const Home = () => {
 
   const { selectedMovies, selectMovie, deleteMovie } = useMovies();
 
-  const paginationHandler = (event, page) => {
+  const paginationHandler = (
+    event: React.ChangeEvent<unknown>,
+    page: number
+  ) => {
     setPage(page);
   };
 
   if (error) {
-    return "Error";
+    return <h1>Something doesn't work</h1>;
   }
 
   return (
@@ -60,7 +64,7 @@ const Home = () => {
                     spacing={2}
                     sx={{ justifyContent: "space-between" }}
                   >
-                    {data.movies.results.map((movie) => (
+                    {data.movies.results.map((movie: IMovie) => (
                       <Grid
                         item
                         xs={12}

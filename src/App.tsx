@@ -3,7 +3,7 @@ import { CssBaseline, Container, Box } from "@mui/material";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import Navigation from "./components/Navigation";
-import Home from "./pages/Home";
+import Home from "./pages/Home/index";
 import Settings from "./pages/Settings";
 import Recommend from "./pages/Recommend";
 

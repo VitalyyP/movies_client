@@ -1,11 +1,12 @@
 import { useState, useCallback } from "react";
 import { MAX_SELECTED_MOVIES } from "../../config";
+import IMovie from "../../interfaces/IMovie.interface";
 
 const useMovies = () => {
-  const [selectedMovies, setSelectedMovies] = useState([]);
+  const [selectedMovies, setSelectedMovies] = useState<IMovie[]>([]);
 
   const selectMovie = useCallback(
-    (movie) => {
+    (movie: IMovie) => {
       const length = selectedMovies.length;
       const isNewSelectedMovie = !selectedMovies.find(
         ({ id }) => id === movie.id
@@ -19,7 +20,7 @@ const useMovies = () => {
   );
 
   const deleteMovie = useCallback(
-    (movie) => {
+    (movie: IMovie) => {
       setSelectedMovies(selectedMovies.filter(({ id }) => id !== movie.id));
     },
     [selectedMovies]
