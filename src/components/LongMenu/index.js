@@ -1,9 +1,10 @@
 import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+
+import IMovie from "../../interfaces/IMovie.interface";
 
 const ITEM_HEIGHT = 48;
 

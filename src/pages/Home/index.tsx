@@ -8,6 +8,7 @@ import MovieCardSelected from "../../components/MovieCardSelected";
 import { moviesQuery } from "./queries";
 import useMovies from "../../hooks/useMovies";
 import IMovie from "../../interfaces/IMovie.interface";
+import SelectedMoviesForm from "../../components/SelectedMoviesForm";
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -101,6 +102,7 @@ const Home = () => {
                 </Grid>
               ))}
               {/* )} */}
+              <SelectedMoviesForm />
             </SelectedMovies>
           </Grid>
         </Grid>
