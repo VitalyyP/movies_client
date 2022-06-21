@@ -21,7 +21,7 @@ const MovieCardSelected = ({ movie, onClick }) => {
         display: "flex",
         position: "relative",
         maxHeight: 150,
-        margin: "16px 0",
+        marginBottom: "16px",
         borderRadius: "5px",
       }}
     >

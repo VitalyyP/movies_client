@@ -8,6 +8,7 @@ import MovieCardSelected from "../../components/MovieCardSelected";
 import { moviesQuery } from "./queries";
 import useMovies from "../../hooks/useMovies";
 import IMovie from "../../interfaces/IMovie.interface";
+import IValues from "../../interfaces/IValues.interface";
 import SelectedMoviesForm from "../../components/SelectedMoviesForm";
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
@@ -22,6 +23,11 @@ const SelectedMovies = styled(Paper)(({ theme }) => ({
   top: theme.spacing(2),
 }));
 
+type Props = {
+  listName?: string;
+  children?: React.ReactNode;
+};
+
 const Home = () => {
   const [page, setPage] = useState(1);
   const { loading, error, data } = useQuery(moviesQuery, {
@@ -29,6 +35,16 @@ const Home = () => {
   });
 
   const { selectedMovies, selectMovie, deleteMovie } = useMovies();
+
+  // const onSubmit = (event: React.FormEvent<HTMLInputElement>) => {
+  // console.log(selectedMovies);
+  // console.log("event: ", event);
+  // console.log({ listName });
+  const onSubmit = ({ listName }: Props) => {
+    console.log({ listName });
+    //   const ids = selectedMovies.map(({ id }) => id);
+    //   const link = `${window.location.host}/recommend?title=${listName}&ids=${ids.join()}`;
+  };
 
   const paginationHandler = (
     event: React.ChangeEvent<unknown>,
@@ -94,7 +110,7 @@ const Home = () => {
             </Box>
           </Grid>
           <Grid item xs={12} md={4} lg={3}>
-            <SelectedMovies sx={{ overflow: "scroll" }}>
+            <SelectedMovies sx={{ overflow: "auto" }}>
               {/* {selectedMovies.length && ( */}
               {selectedMovies.map((movie) => (
                 <Grid key={movie.id}>
@@ -102,7 +118,7 @@ const Home = () => {
                 </Grid>
               ))}
               {/* )} */}
-              <SelectedMoviesForm />
+              <SelectedMoviesForm onSubmit={onSubmit} />
             </SelectedMovies>
           </Grid>
         </Grid>
