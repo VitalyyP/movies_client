@@ -23,11 +23,6 @@ const SelectedMovies = styled(Paper)(({ theme }) => ({
   top: theme.spacing(2),
 }));
 
-type Props = {
-  listName?: string;
-  children?: React.ReactNode;
-};
-
 const Home = () => {
   const [page, setPage] = useState(1);
   const { loading, error, data } = useQuery(moviesQuery, {
@@ -36,11 +31,7 @@ const Home = () => {
 
   const { selectedMovies, selectMovie, deleteMovie } = useMovies();
 
-  // const onSubmit = (event: React.FormEvent<HTMLInputElement>) => {
-  // console.log(selectedMovies);
-  // console.log("event: ", event);
-  // console.log({ listName });
-  const onSubmit = ({ listName }: Props) => {
+  const onSubmit = ({ listName }: IValues) => {
     console.log({ listName });
     const ids = selectedMovies.map(({ id }) => id);
     const link = `${

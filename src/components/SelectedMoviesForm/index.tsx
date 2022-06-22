@@ -1,32 +1,16 @@
 import { Form, Field } from "react-final-form";
-import TextField from "@mui/material/TextField";
 import CheckIcon from "@mui/icons-material/Check";
 import { IconButton, Paper } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import InputBase from "@mui/material/InputBase";
 import IValues from "../../interfaces/IValues.interface";
 
-interface IErrors {
-  listName?: string;
-}
-
-type Props = {
-  listName?: string;
-  children?: React.ReactNode;
-  onSubmit: React.FormEvent;
-};
-
-// interface ISelectedMoviesForm {
-//   onSubmit(event: React.FormEvent<HTMLInputElement>): void;
-// }
-
 const SelectedMoviesForm = ({ onSubmit }: any) => {
-  // const values = { props.values }
   return (
     <Form
       onSubmit={onSubmit}
       validate={(values) => {
-        const errors: IErrors = {};
+        const errors: IValues = {};
         if (!values.listName) {
           errors.listName = "Required";
         }
