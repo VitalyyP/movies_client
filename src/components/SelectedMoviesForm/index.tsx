@@ -20,19 +20,18 @@ type Props = {
 //   onSubmit(event: React.FormEvent<HTMLInputElement>): void;
 // }
 
-const SelectedMoviesForm: React.FC<Props> = (props) => {
+const SelectedMoviesForm = ({ onSubmit }: any) => {
   // const values = { props.values }
   return (
     <Form
-      onSubmit={props.onSubmit}
-      // validate={(values) => {
-      //   const errors: IErrors = {};
-      //   if (!values.listName) {
-      //     errors.listName = "Required";
-      //   }
-      //   return errors;
-      // }
-      // }
+      onSubmit={onSubmit}
+      validate={(values) => {
+        const errors: IErrors = {};
+        if (!values.listName) {
+          errors.listName = "Required";
+        }
+        return errors;
+      }}
       render={({ handleSubmit, form, values }) => (
         <form onSubmit={handleSubmit}>
           <Paper

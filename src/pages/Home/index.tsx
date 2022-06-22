@@ -42,8 +42,10 @@ const Home = () => {
   // console.log({ listName });
   const onSubmit = ({ listName }: Props) => {
     console.log({ listName });
-    //   const ids = selectedMovies.map(({ id }) => id);
-    //   const link = `${window.location.host}/recommend?title=${listName}&ids=${ids.join()}`;
+    const ids = selectedMovies.map(({ id }) => id);
+    const link = `${
+      window.location.host
+    }/recommend?title=${listName}&ids=${ids.join()}`;
   };
 
   const paginationHandler = (
