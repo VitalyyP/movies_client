@@ -3,7 +3,9 @@ import CheckIcon from "@mui/icons-material/Check";
 import { IconButton, Paper } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import InputBase from "@mui/material/InputBase";
+
 import IValues from "../../interfaces/IValues.interface";
+import ConfirmModal from "../ConfirmModal";
 
 const SelectedMoviesForm = ({ onSubmit }: any) => {
   return (
