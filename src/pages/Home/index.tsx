@@ -10,6 +10,7 @@ import useMovies from "../../hooks/useMovies";
 import IMovie from "../../interfaces/IMovie.interface";
 import IValues from "../../interfaces/IValues.interface";
 import SelectedMoviesForm from "../../components/SelectedMoviesForm";
+import ConfirmModal from "../../components/ConfirmModal";
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -25,6 +26,8 @@ const SelectedMovies = styled(Paper)(({ theme }) => ({
 
 const Home = () => {
   const [page, setPage] = useState(1);
+  const [listName, setListName] = useState<string | undefined>();
+  const [link, setLink] = useState("");
   const { loading, error, data } = useQuery(moviesQuery, {
     variables: { page },
   });
@@ -37,6 +40,12 @@ const Home = () => {
     const link = `${
       window.location.host
     }/recommend?title=${listName}&ids=${ids.join()}`;
+    setLink(link);
+    setListName(listName);
+  };
+
+  const onCloseConfirmModal = () => {
+    setLink("");
   };
 
   const paginationHandler = (
@@ -112,6 +121,12 @@ const Home = () => {
               ))}
               {/* )} */}
               <SelectedMoviesForm onSubmit={onSubmit} />
+              <ConfirmModal
+                url={link}
+                title={listName}
+                open={!!link}
+                onClose={onCloseConfirmModal}
+              />
             </SelectedMovies>
           </Grid>
         </Grid>

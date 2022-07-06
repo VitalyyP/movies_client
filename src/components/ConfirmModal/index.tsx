@@ -1,4 +1,3 @@
-// import * as React from "react";
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Box from "@mui/material/Box";
@@ -13,6 +12,9 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import Alert from "@mui/material/Alert";
 import CloseIcon from "@mui/icons-material/Close";
 
+import IModal from "../../interfaces/IModal.interface";
+import CustomizedSnackbar from "../CustomizedSnackbar";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -20,13 +22,30 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
+  border: "2px solid transparent",
+  borderRadius: "10px",
   p: 4,
+  // pb: 8,
 };
 
-export default function ConfirmModal({ open, url, title, onClose }) {
+export default function ConfirmModal({ open, url, title, onClose }: IModal) {
   const [openAlert, setOpenAlert] = useState(false);
+
+  const handleClick = () => {
+    setOpenAlert(true);
+  };
+
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenAlert(false);
+  };
+
   return (
     <Modal
       open={open}
@@ -48,7 +67,6 @@ export default function ConfirmModal({ open, url, title, onClose }) {
             width: "100%",
           }}
         >
-          {/* <IconButton sx={{ p: "10px" }} aria-label="menu"></IconButton> */}
           <InputBase
             sx={{ ml: 1, flex: 1 }}
             placeholder="List URL"
@@ -71,32 +89,13 @@ export default function ConfirmModal({ open, url, title, onClose }) {
           </CopyToClipboard>
         </Paper>
         {openAlert ? (
-          <Alert
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={() => {
-                  setOpenAlert(false);
-                }}
-              >
-                <CloseIcon fontSize="inherit" />
-              </IconButton>
-            }
-            sx={{ mb: 2 }}
-          >
-            Close me!
-          </Alert>
+          <CustomizedSnackbar
+            openAlert={openAlert}
+            handleClick={handleClick}
+            handleClose={handleClose}
+          />
         ) : null}
       </Box>
     </Modal>
   );
 }
-
-// ConfirmModal.propTypes = {
-//   open: PropTypes.bool,
-//   url: PropTypes.string,
-//   title: PropTypes.string,
-//   onClose: PropTypes.func,
-// };
