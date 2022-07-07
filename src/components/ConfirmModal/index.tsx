@@ -9,8 +9,6 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import Alert from "@mui/material/Alert";
-import CloseIcon from "@mui/icons-material/Close";
 
 import IModal from "../../interfaces/IModal.interface";
 import CustomizedSnackbar from "../CustomizedSnackbar";
@@ -25,7 +23,7 @@ const style = {
   border: "2px solid transparent",
   borderRadius: "10px",
   p: 4,
-  // pb: 8,
+  pb: 10,
 };
 
 export default function ConfirmModal({ open, url, title, onClose }: IModal) {

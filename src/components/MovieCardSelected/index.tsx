@@ -3,16 +3,12 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
-import PropTypes from "prop-types";
 
 import LongMenu from "../LongMenu";
+import IMovieCardSelected from "../../interfaces/IMovieCardSelected.interface";
 
-const MovieCardSelected = ({ movie, onClick }) => {
+const MovieCardSelected = ({ movie, onClick }: IMovieCardSelected) => {
   const theme = useTheme();
 
   return (
@@ -51,7 +47,7 @@ const MovieCardSelected = ({ movie, onClick }) => {
             {movie.releaseDate}
           </Typography>
         </CardContent>
-        <Box sx={{ alignItems: "center", pl: 2, pb: 1 }}>
+        {/* <Box sx={{ alignItems: "center", pl: 2, pb: 1 }}>
           {movie.genres?.length ? (
             <Typography variant="body1" color="text.secondary" component="div">
               {movie.genres[0].name}
@@ -60,26 +56,10 @@ const MovieCardSelected = ({ movie, onClick }) => {
           <Typography variant="body1" color="text.secondary" component="div">
             {movie.runtime}
           </Typography>
-        </Box>
+        </Box> */}
       </Box>
     </Card>
   );
-};
-
-MovieCardSelected.propTypes = {
-  movie: PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string,
-    genres: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        name: PropTypes.string,
-      })
-    ),
-    runtime: PropTypes.number,
-  }).isRequired,
-  onClick: PropTypes.func,
 };
 
 export default MovieCardSelected;

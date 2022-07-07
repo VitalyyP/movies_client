@@ -1,21 +1,11 @@
-import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import PropTypes from "prop-types";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 
 import LongMenu from "../LongMenu";
-import IMovie from "../../interfaces/IMovie.interface";
-
-interface IMovieCard {
-  movie: IMovie;
-  // onClick: React.MouseEventHandler<HTMLDivElement>;
-  // onClick: React.MouseEventHandler<HTMLButtonElement>;
-  onClick: any;
-}
+import IMovieCard from "../../interfaces/IMovieCard.interface";
 
 const CardInfo = styled(CardContent)(({ theme }) => ({
   "&: last-child": {
@@ -56,14 +46,5 @@ const MovieCard = ({ movie, onClick }: IMovieCard) => {
     </Card>
   );
 };
-
-// MovieCard.propTypes = {
-//   movie: PropTypes.shape({
-//     image: PropTypes.string.isRequired,
-//     title: PropTypes.string.isRequired,
-//     releaseDate: PropTypes.string,
-//   }).isRequired,
-//   onClick: PropTypes.func,
-// };
 
 export default MovieCard;

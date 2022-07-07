@@ -1,17 +1,17 @@
-import { useState } from "react";
+import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import IMovie from "../../interfaces/IMovie.interface";
+import ILongMenu from "../../interfaces/ILongMenu.interface";
 
 const ITEM_HEIGHT = 48;
 
-export default function LongMenu({ onClick, action }) {
-  const [anchorEl, setAnchorEl] = useState(null);
+export default function LongMenu({ onClick, action }: ILongMenu) {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -44,7 +44,6 @@ export default function LongMenu({ onClick, action }) {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,

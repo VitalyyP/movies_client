@@ -24,7 +24,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 const Navigation = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
-  const list = (anchor) => (
+  const list = () => (
     <Box sx={{ width: 250 }} role="presentation">
       <List>
         <Link
