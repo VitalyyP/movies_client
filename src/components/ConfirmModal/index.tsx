@@ -12,6 +12,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import IModal from "../../interfaces/IModal.interface";
 import CustomizedSnackbar from "../CustomizedSnackbar";
+import SocialShare from "../SocialShare";
 
 const style = {
   position: "absolute",
@@ -86,6 +87,7 @@ export default function ConfirmModal({ open, url, title, onClose }: IModal) {
             </IconButton>
           </CopyToClipboard>
         </Paper>
+        <SocialShare url={url} />
         {openAlert ? (
           <CustomizedSnackbar
             openAlert={openAlert}
