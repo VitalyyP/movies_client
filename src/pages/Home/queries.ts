@@ -15,3 +15,13 @@ export const moviesQuery = gql`
     }
   }
 `;
+
+export const movieDetailsQuery = gql`
+  query Movie($id: Int) {
+        id
+        title
+        genres
+        runtime
+    
+  }
+`;
