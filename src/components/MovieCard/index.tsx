@@ -3,12 +3,9 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
-import { useQuery } from "@apollo/client";
 
 import LongMenu from "../LongMenu";
 import IMovieCard from "../../interfaces/IMovieCard.interface";
-import { movieDetailsQuery } from "../../pages/Home/queries";
-
 
 const CardInfo = styled(CardContent)(({ theme }) => ({
   "&: last-child": {
