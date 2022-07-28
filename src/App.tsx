@@ -6,7 +6,7 @@ import Navigation from "./components/Navigation";
 import Home from "./pages/Home/index";
 import Settings from "./pages/Settings";
 import Recommend from "./pages/Recommend";
-import MovieDetailsPage from "./pages/MovieDetailsPage";
+// import MovieDetailsPage from "./pages/MovieDetailsPage";
 
 function App() {
   const client = new ApolloClient({
@@ -36,7 +36,7 @@ function App() {
             <Container maxWidth="xl">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="movie/:id" element={<MovieDetailsPage />} />
+                {/* <Route path="movie/:id" element={<MovieDetailsPage />} /> */}
                 <Route path="settings" element={<Settings />} />
                 <Route path="recommend" element={<Recommend />} />
               </Routes>

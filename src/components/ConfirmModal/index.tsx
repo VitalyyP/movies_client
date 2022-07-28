@@ -72,7 +72,12 @@ export default function ConfirmModal({ open, url, title, onClose }: IModal) {
             inputProps={{ "aria-label": "list URL" }}
             value={url}
           />
-          <IconButton sx={{ p: "10px" }} aria-label="preview">
+          <IconButton
+            href={url}
+            target="_blank"
+            sx={{ p: "10px" }}
+            aria-label="preview"
+          >
             <VisibilityIcon />
           </IconButton>
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />

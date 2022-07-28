@@ -16,12 +16,28 @@ export const moviesQuery = gql`
   }
 `;
 
-export const movieDetailsQuery = gql`
-  query Movie($id: Int) {
-        id
-        title
-        genres
-        runtime
-    
-  }
-`;
+// export const movieDetailsQuery = gql`
+//   query Movie($id: Int) {
+//         id
+//         title
+//         genres
+//         runtime
+
+//   }
+// `;
+
+// export const moviesByIdsQuery = gql`
+//   query MoviesByIds($isd: [String]) {
+//     moviesByIds(isd: $isd) {
+//       page
+//       totalResults
+//       totalPages
+//       results {
+//         id
+//         title
+//         image: posterPath
+//         releaseDate(format: "MMMM yyyy")
+//       }
+//     }
+//   }
+// `;
