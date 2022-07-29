@@ -1,35 +1,16 @@
-import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Typography from "@mui/material/Typography";
+import { Box, Grid, Paper, styled } from "@mui/material";
 import { useQuery } from "@apollo/client";
 
 import { moviesByIdsQuery } from "./queries";
-import { number } from "prop-types";
-import { Identity } from "@mui/base";
-
-interface Params {
-  title: string | null;
-  ids: number[] | undefined;
-}
+import IMovie from "../../interfaces/IMovie.interface";
+import MovieCard from "../../components/MovieCard";
 
 type Id = string | number;
 
 const Recommend = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [params, setParams] = useState<Params>({ title: "", ids: [] });
-  // const [title, setTitle] = useState<string>("");
-  // const [ids, setIds] = useState<number[]>([]);
-
-  // const titleFromParams = searchParams.get("title");
-  // const idsFromParams = searchParams
-  //   .get("ids")
-  //   ?.split(",")
-  //   .map((id) => +id);
-
-  // setParams({ title: titleFromParams, ids: idsFromParams });
-
-  // titleFromParams && setTitle(titleFromParams);
-  // idsFromParams && setIds(idsFromParams);
+  const [searchParams] = useSearchParams();
 
   const { loading, error, data } = useQuery(moviesByIdsQuery, {
     variables: {
@@ -40,20 +21,46 @@ const Recommend = () => {
     },
   });
 
-  console.log("data: ", data);
+  if (loading) {
+    <div>Loading...</div>;
+  }
 
-  // useEffect(() => {
-  //   const titleFromParams = searchParams.get("title");
-  //   const idsFromParams = searchParams.get("ids")?.split(",");
-  //   titleFromParams && setTitle(titleFromParams);
-  //   idsFromParams && setIds(idsFromParams);
-  // }, [searchParams]);
+  if (error) {
+    <div>Error. Try again!</div>;
+  }
 
   return (
     <>
-      <Typography variant="h2" component="h2" gutterBottom>
-        {params.title}
-      </Typography>
+      <Paper sx={{ margin: "10px 0" }}>
+        <Typography variant="h2" component="h2" gutterBottom>
+          {searchParams.get("title")}
+        </Typography>
+      </Paper>
+      <Paper sx={{ margin: "10px 0" }}>
+        <Box sx={{ flexGrow: 1, padding: 1 }}>
+          {loading && "Loading..."}
+          {data && (
+            <Grid container spacing={2} sx={{ justifyContent: "left" }}>
+              {data.moviesByIds.map((movie: IMovie) => (
+                <Grid
+                  item
+                  xs={12}
+                  sm={4}
+                  md={4}
+                  lg={2.4}
+                  key={movie.id}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <MovieCard movie={movie} onClick={() => {}} />
+                </Grid>
+              ))}
+            </Grid>
+          )}
+        </Box>
+      </Paper>
     </>
   );
 };
