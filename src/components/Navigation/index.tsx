@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 import {
@@ -20,9 +20,17 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { AppContext } from "../Context";
+import IAppContext from "../../interfaces/IAppContext";
 
 const Navigation = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const { state: {
+    locale: string;
+},dispatch: React.Dispatch<{
+    type: string;
+    locale: string;
+  }> } = useContext(AppContext);
 
   const list = () => (
     <Box sx={{ width: 250 }} role="presentation">

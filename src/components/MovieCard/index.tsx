@@ -14,10 +14,9 @@ const CardInfo = styled(CardContent)(({ theme }) => ({
 }));
 
 const MovieCard = ({ movie, onClick }: IMovieCard) => {
-
   const handleClick = (e: React.SyntheticEvent) => {
-    console.log(e);
-  }
+    console.log("handleClickInMovieCard: ", e.target);
+  };
 
   return (
     <Card
@@ -29,14 +28,20 @@ const MovieCard = ({ movie, onClick }: IMovieCard) => {
       }}
     >
       <LongMenu onClick={() => onClick(movie)} action="Select" />
-      <a href="http://www.youtube.com/" target="_blank" title="YouTube" onClick={handleClick} rel="noreferrer">
-      <CardMedia
-        component="img"
-        image={movie.image}
+      <a
+        href="https://www.youtube.com/"
+        target="_blank"
+        title="YouTube"
+        onClick={handleClick}
+        rel="noreferrer"
+      >
+        <CardMedia
+          component="img"
+          image={movie.image}
           alt={movie.title}
           id={movie.id}
-        sx={{ borderRadius: "10px" }}
-      />
+          sx={{ borderRadius: "10px" }}
+        />
       </a>
       <CardInfo sx={{ textAlign: "center" }}>
         <Typography
