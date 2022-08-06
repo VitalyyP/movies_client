@@ -1,5 +1,6 @@
 import React, { useReducer, createContext } from "react";
 import defaultContext from "./defaultContext";
+import { LOCALES } from "../../config";
 // import { saveToStorage } from "../../utils/localStorage";
 // import { STORAGE_KEY } from "../../constants/locale";
 
@@ -13,21 +14,43 @@ let reducer = (
 ) => {
   switch (action.type) {
     case "reset":
-      return defaultContext;
+      return { ...state, locale: LOCALES.ENGLISH };
     case "setLocale":
       // saveToStorage(STORAGE_KEY, action.locale);
       return { ...state, locale: action.locale };
     default:
-      return defaultContext;
+      return { ...state, locale: LOCALES.ENGLISH };
   }
 };
+
+const initialState = {
+  locale: LOCALES.ENGLISH,
+};
+
+// type ACTIONTYPE =
+//   | { type: "increment"; payload: number }
+//   | { type: "decrement"; payload: string };
+
+// function reducer(state: typeof initialState, action: ACTIONTYPE) {
+//   switch (action.type) {
+//     case "increment":
+//       return { count: state.count + action.payload };
+//     case "decrement":
+//       return { count: state.count - Number(action.payload) };
+//     default:
+//       throw new Error();
+//   }
+// }
 
 type Props = {
   children: JSX.Element;
 };
 
 const AppContextProvider = ({ children }: Props) => {
-  const [state, dispatch] = useReducer(reducer, defaultContext);
+  // const [state, dispatch] = useReducer(reducer, defaultContext);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  console.log("state: ", state);
+  console.log("dispatch:", dispatch);
   const value = { state, dispatch };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

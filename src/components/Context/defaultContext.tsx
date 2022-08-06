@@ -5,5 +5,11 @@ import { LOCALES } from "../../config";
 
 export default {
   // locale: getFromStorage(STORAGE_KEY) || LOCALES.ENGLISH,
-  locale: LOCALES.ENGLISH,
+  state: {
+    locale: LOCALES.ENGLISH,
+  },
+  dispatch: {
+    type: "reset",
+    locale: LOCALES.ENGLISH,
+  },
 };
