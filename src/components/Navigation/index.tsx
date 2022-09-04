@@ -1,4 +1,4 @@
-import { useState, useContext, useCallback } from "react";
+import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 import {
@@ -20,27 +20,11 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { AppContext } from "../Context";
-import defaultContext from "../Context/defaultContext";
-import IAppContext from "../../interfaces/IAppContext";
-import { LOCALES } from "../../config";
+
+import Languages from "../Languages";
 
 const Navigation = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const { state, dispatch } = useContext(AppContext) || defaultContext;
-
-  // const setLanguage = useCallback((locale: string) => {
-  //   dispatch({
-  //     type: "setLocale",
-  //     locale,
-  //   })
-  // }, []);
-  const setLanguage = (locale: string) => {
-    // dispatch({
-    //   type: "setLocale",
-    //   locale,
-    // });
-  };
 
   const list = () => (
     <Box sx={{ width: 250 }} role="presentation">
@@ -62,6 +46,7 @@ const Navigation = () => {
       </List>
     </Box>
   );
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -88,17 +73,7 @@ const Navigation = () => {
                 Movies recommendation
               </Typography>
             </Link>
-            <Box>
-              {state.locale}
-              <Button
-                disabled={state.locale === "en-us"}
-                sx={{ my: 2, color: "white" }}
-                // onClick={setLanguage(LOCALES.ENGLISH)}
-              >
-                English
-              </Button>
-              <Button sx={{ my: 2, color: "white" }}>Українська</Button>
-            </Box>
+            <Languages />
             <Box sx={{ flexGrow: 0, display: { xs: "none", lg: "flex" } }}>
               <Button
                 component={RouterLink}
