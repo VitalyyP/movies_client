@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CssBaseline, Container, Box } from "@mui/material";
 import {
@@ -18,10 +18,13 @@ import Recommend from "./pages/Recommend";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 
 import LanguageContext from "./components/Context/Context";
-import { LOCALES } from "../src/config";
+import { AppContext } from "./components/Context";
+import { LOCALES } from "./const";
 
 function App() {
-  const [language, setLanguage] = useState(LOCALES.ENGLISH);
+  const context = useContext(AppContext);
+  const locale = context?.state.locale;
+  // const [language, setLanguage] = useState(LOCALES.ENGLISH);
   const httpLink = new HttpLink({ uri: "http://localhost:4000/" });
   const localeMiddleware = new ApolloLink((operation, forward) => {
     const customHeaders = operation.getContext().hasOwnProperty("headers")
@@ -31,7 +34,7 @@ function App() {
     operation.setContext({
       headers: {
         ...customHeaders,
-        language,
+        locale,
       },
     });
     return forward(operation);
@@ -45,35 +48,33 @@ function App() {
 
   return (
     <>
-      <LanguageContext.Provider value={{ language, setLanguage }}>
-        <ApolloProvider client={client}>
-          <BrowserRouter>
-            <CssBaseline />
-            <Navigation />
-            <Box
-              component="main"
-              sx={{
-                backgroundColor: (theme) =>
-                  theme.palette.mode === "light"
-                    ? theme.palette.grey[100]
-                    : theme.palette.grey[900],
-                flexGrow: 1,
-                height: "100vh",
-                overflow: "auto",
-              }}
-            >
-              <Container maxWidth="xl">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="movie/:id" element={<MovieDetailsPage />} />
-                  <Route path="settings" element={<Settings />} />
-                  <Route path="recommend" element={<Recommend />} />
-                </Routes>
-              </Container>
-            </Box>
-          </BrowserRouter>
-        </ApolloProvider>
-      </LanguageContext.Provider>
+      {/* <LanguageContext.Provider value={{ language, setLanguage }}> */}
+      <ApolloProvider client={client}>
+        <CssBaseline />
+        <Navigation />
+        <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === "light"
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: "100vh",
+            overflow: "auto",
+          }}
+        >
+          <Container maxWidth="xl">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="movie/:id" element={<MovieDetailsPage />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path="recommend" element={<Recommend />} />
+            </Routes>
+          </Container>
+        </Box>
+      </ApolloProvider>
+      {/* </LanguageContext.Provider> */}
     </>
   );
 }

@@ -1,15 +1,22 @@
-// import { getFromStorage } from "../../utils/localStorage";
-// import { LOCALES } from "../i18n/constants";
-// import { STORAGE_KEY } from "../../constants/locale";
-import { LOCALES } from "../../config";
+import { useSearchParams } from "react-router-dom";
 
-export default {
-  // locale: getFromStorage(STORAGE_KEY) || LOCALES.ENGLISH,
-  state: {
-    locale: LOCALES.ENGLISH,
-  },
-  dispatch: {
-    type: "reset",
-    locale: LOCALES.ENGLISH,
-  },
+import { LOCALES, STORAGE_KEY } from "../../const";
+import { getFromStorage } from "../../utils/localStorage";
+
+export const useDefaultContext = () => {
+  const [searchParams] = useSearchParams();
+
+  return {
+    locale:
+      getFromStorage(STORAGE_KEY) ||
+      searchParams.get("locale") ||
+      LOCALES.ENGLISH,
+  };
+  // state: {
+  //   locale: LOCALES.ENGLISH,
+  // },
+  // dispatch: {
+  //   type: "reset",
+  //   locale: LOCALES.ENGLISH,
+  // },
 };

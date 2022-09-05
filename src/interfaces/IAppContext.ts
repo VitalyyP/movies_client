@@ -5,9 +5,3 @@ export default interface IAppContext {
     locale: string;
   }>;
 }
-
-// {
-//   name: string;
-//   author: string;
-//   url: string;
-// }

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Box, Button } from "@mui/material";
 
 import LanguageContext from "../Context/Context";
-import { LOCALES } from "../../config";
+import { LOCALES } from "../../const";
 
 const Languages = () => {
   const context = useContext(LanguageContext);

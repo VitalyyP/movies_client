@@ -16,7 +16,7 @@ import {
   WhatsappIcon,
 } from "react-share";
 
-import { SOCIAL_BUTTON_SIZE } from "../../config";
+import { SOCIAL_BUTTON_SIZE } from "../../const";
 import ISocialShare from "../../interfaces/ISocialShare.interface";
 
 export default function SocialShare({ url }: ISocialShare) {

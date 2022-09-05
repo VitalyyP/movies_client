@@ -1,9 +1,8 @@
 import React, { useReducer, createContext } from "react";
-import defaultContext from "./defaultContext";
-import { LOCALES } from "../../config";
-// import { saveToStorage } from "../../utils/localStorage";
-// import { STORAGE_KEY } from "../../constants/locale";
 
+import { useDefaultContext } from "./defaultContext";
+import { LOCALES, STORAGE_KEY } from "../../const";
+import { saveToStorage } from "../../utils/localStorage";
 import IAppContext from "../../interfaces/IAppContext";
 
 const AppContext = createContext<IAppContext | null>(null);
@@ -13,18 +12,18 @@ let reducer = (
   action: { type: string; locale: string }
 ) => {
   switch (action.type) {
-    case "reset":
-      return { ...state, locale: LOCALES.ENGLISH };
     case "setLocale":
-      // saveToStorage(STORAGE_KEY, action.locale);
+      console.log("saveToStorage(STORAGE_KEY, action.locale");
+      saveToStorage(STORAGE_KEY, action.locale);
       return { ...state, locale: action.locale };
     default:
-      return { ...state, locale: LOCALES.ENGLISH };
+      throw new Error(`Unsuported action.type: ${action.type}`);
   }
 };
 
 const initialState = {
-  locale: LOCALES.ENGLISH,
+  locale: LOCALES.UKRANIAN,
+  // locale: LOCALES.ENGLISH,
 };
 
 type Props = {
@@ -32,7 +31,9 @@ type Props = {
 };
 
 const AppContextProvider = ({ children }: Props) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const defaultContext = useDefaultContext();
+  // const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, defaultContext);
   console.log("state: ", state);
   console.log("dispatch:", dispatch);
   const value = { state, dispatch };
