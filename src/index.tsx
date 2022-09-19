@@ -4,7 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { AppContextProvider } from "./components/Context";
+// import { AppContextProvider } from "./components/Context";
+import { LocaleProvider } from "./context/LocaleContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -12,9 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AppContextProvider>
+      <LocaleProvider>
         <App />
-      </AppContextProvider>
+      </LocaleProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

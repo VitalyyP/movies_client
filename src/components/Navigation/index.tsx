@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
-
+// import { FormattedMessage } from "react-intl";
 import {
   Container,
   Button,
@@ -22,6 +22,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 import Languages from "../Languages";
+import { translate } from "../../i18n";
 
 const Navigation = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -70,7 +71,7 @@ const Navigation = () => {
                 component="div"
                 sx={{ color: "white", flexGrow: 1 }}
               >
-                Movies recommendation
+                {translate("navigation.home")}
               </Typography>
             </Link>
             <Languages />
@@ -80,7 +81,7 @@ const Navigation = () => {
                 to="settings"
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                Settings
+                {translate("navigation.settings")}
               </Button>
             </Box>
           </Toolbar>

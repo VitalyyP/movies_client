@@ -4,6 +4,7 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 
 import ISnackbar from "../../interfaces/ISnackbar.interface";
+import { translate } from "../../i18n";
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -31,7 +32,7 @@ export default function CustomizedSnackbar({
           color="info"
           sx={{ width: "100%", m: "0px" }}
         >
-          Copied successfully!
+          {translate("copied")}
         </Alert>
       </Snackbar>
     </Stack>

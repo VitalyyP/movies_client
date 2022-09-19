@@ -1,30 +1,38 @@
-import { useContext } from "react";
 import { Box, Button } from "@mui/material";
 
-import LanguageContext from "../Context/Context";
+import {
+  useLocaleContext,
+  useLocaleDispatch,
+} from "../../context/LocaleContext";
+import { setLocale } from "../../context/LocaleReducer";
 import { LOCALES } from "../../const";
+import { saveToStorage } from "../../utils/localStorage";
 
 const Languages = () => {
-  const context = useContext(LanguageContext);
-  const { language, setLanguage } = context
-    ? context
-    : { language: "", setLanguage: () => {} };
-  console.log("context: ", context);
+  const { state } = useLocaleContext();
+  const { locale } = state;
+  const { dispatch } = useLocaleDispatch();
+
+  const setLanguage = (locale: string) => {
+    saveToStorage("locale", locale);
+    dispatch(setLocale(locale));
+  };
+
   return (
     <Box>
       <Button
-        disabled={language === LOCALES.ENGLISH}
+        disabled={locale === LOCALES.ENGLISH}
         sx={{ my: 2, color: "white" }}
         onClick={() => setLanguage(LOCALES.ENGLISH)}
       >
         English
       </Button>
       <Button
-        disabled={language === LOCALES.UKRANIAN}
+        disabled={locale === LOCALES.UKRAINIAN}
         sx={{ my: 2, color: "white" }}
-        onClick={() => setLanguage(LOCALES.UKRANIAN)}
+        onClick={() => setLanguage(LOCALES.UKRAINIAN)}
       >
-        Ukranian
+        Українська
       </Button>
     </Box>
   );

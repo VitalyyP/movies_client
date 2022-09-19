@@ -6,7 +6,7 @@ export const saveToStorage = (name: string, data: any) => {
 };
 
 export const getFromStorage = (name: string) => {
-  if (!window || !window.localStorage) {
+  if (!window || !window.localStorage || !window.localStorage.getItem(name)) {
     return null;
   }
 

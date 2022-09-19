@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 
 import LongMenu from "../LongMenu";
 import IMovieCard from "../../interfaces/IMovieCard.interface";
+import { translate } from "../../i18n";
 
 const CardInfo = styled(CardContent)(({ theme }) => ({
   "&: last-child": {
@@ -15,7 +16,7 @@ const CardInfo = styled(CardContent)(({ theme }) => ({
 
 const MovieCard = ({ movie, onClick }: IMovieCard) => {
   const handleClick = (e: React.SyntheticEvent) => {
-    console.log("handleClickInMovieCard: ", e.target);
+    // console.log("handleClickInMovieCard: ", e.target);
   };
 
   return (
@@ -27,7 +28,7 @@ const MovieCard = ({ movie, onClick }: IMovieCard) => {
         borderRadius: "10px",
       }}
     >
-      <LongMenu onClick={() => onClick(movie)} action="Select" />
+      <LongMenu onClick={() => onClick(movie)} action={translate("select")} />
       <a
         href="https://www.youtube.com/"
         target="_blank"

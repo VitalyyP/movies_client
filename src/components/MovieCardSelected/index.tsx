@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 
 import LongMenu from "../LongMenu";
 import IMovieCardSelected from "../../interfaces/IMovieCardSelected.interface";
+import { translate } from "../../i18n";
 
 const MovieCardSelected = ({ movie, onClick }: IMovieCardSelected) => {
   const theme = useTheme();
@@ -21,7 +22,7 @@ const MovieCardSelected = ({ movie, onClick }: IMovieCardSelected) => {
         borderRadius: "5px",
       }}
     >
-      <LongMenu onClick={() => onClick(movie)} action="Delete" />
+      <LongMenu onClick={() => onClick(movie)} action={translate("delete")} />
       <CardMedia
         component="img"
         sx={{ width: 100, borderRadius: "5px" }}

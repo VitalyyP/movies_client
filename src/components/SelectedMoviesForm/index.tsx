@@ -5,8 +5,13 @@ import Divider from "@mui/material/Divider";
 import InputBase from "@mui/material/InputBase";
 
 import IValues from "../../interfaces/IValues.interface";
+import { useLocaleContext } from "../../context/LocaleContext";
+import message from "../../i18n/messages";
 
 const SelectedMoviesForm = ({ onSubmit }: any) => {
+  const { state } = useLocaleContext();
+  const { locale } = state;
+
   return (
     <Form
       onSubmit={onSubmit}
@@ -33,11 +38,10 @@ const SelectedMoviesForm = ({ onSubmit }: any) => {
                 <>
                   <InputBase
                     sx={{ ml: 1, flex: 1 }}
-                    placeholder="Enter the list name"
-                    inputProps={{ "aria-label": "enter list name" }}
+                    placeholder={message[locale].put_the_list_name}
+                    inputProps={{ "aria-label": "put list name" }}
                     {...input}
                   />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
                 </>
               )}
             />
