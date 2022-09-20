@@ -10,7 +10,7 @@ export const moviesQuery = gql`
         id
         title
         image: posterPath
-        releaseDate(format: "MMMM yyyy")
+        releaseDate(format: "dd.MM.yy")
       }
     }
   }

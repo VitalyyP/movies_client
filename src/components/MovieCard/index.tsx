@@ -44,7 +44,14 @@ const MovieCard = ({ movie, onClick }: IMovieCard) => {
           sx={{ borderRadius: "10px" }}
         />
       </a>
-      <CardInfo sx={{ textAlign: "center" }}>
+      <CardInfo
+        sx={{
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          marginBottom: "32px",
+        }}
+      >
         <Typography
           variant="body1"
           gutterBottom
@@ -53,7 +60,14 @@ const MovieCard = ({ movie, onClick }: IMovieCard) => {
         >
           {movie.title}
         </Typography>
-        <Typography variant="body1" component="div">
+        <Typography
+          variant="body1"
+          component="div"
+          sx={{
+            position: "absolute",
+            bottom: "16px",
+          }}
+        >
           {movie.releaseDate}
         </Typography>
       </CardInfo>
